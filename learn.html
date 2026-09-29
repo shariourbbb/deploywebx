@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn - StudyMart</title>
+<script>try{var __sm_t=localStorage.getItem('sm_theme')||'light';if(__sm_t==='dark'){document.documentElement.classList.add('sm-dark');document.documentElement.style.colorScheme='dark';}}catch(e){}</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{font-family:'Inter',sans-serif}
+.bangla{font-family:'Hind Siliguri',sans-serif}
+.scrollbar-hide::-webkit-scrollbar{display:none}
+.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
+.lesson-row.active{background:#EEF2FF;border-color:#C7D9FF}
+.sec-body{display:none}
+.sec-open .sec-body{display:block}
+.sec-open .sec-chev{transform:rotate(180deg)}
+.sec-chev{transition:transform .2s}
+#learnHead{box-shadow:0 10px 28px rgba(15,32,67,.14); border:1px solid rgba(255,255,255,.08)}
+#currList::-webkit-scrollbar{width:5px}
+#currList::-webkit-scrollbar-thumb{background:#C7D2FE;border-radius:9999px}
+#currList::-webkit-scrollbar-track{background:#F8F9FD}
+#playerBox{box-shadow:0 12px 32px rgba(15,32,67,.18); border:1px solid rgba(255,255,255,.06)}
+.course-pill{backdrop-filter:blur(8px)}
+</style>
+</head>
+<body class="bg-[#F5F7FB] text-slate-900 antialiased pb-[88px] lg:pb-0">
+
+<!-- Header -->
+<link rel="stylesheet" href="assets/navbar.css">
+<header class="sticky top-0 z-40 bg-white border-b border-slate-100 shadow-sm">
+  <div class="hidden lg:block border-b border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6 h-[68px] flex items-center gap-4">
+      <button data-sm-desk-menu-btn class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition flex-shrink-0" aria-label="Menu"><i class="fa-solid fa-bars text-[20px] text-[#0F2043]"></i></button>
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img data-sm-desk-logo src="" alt="Logo" class="hidden w-10 h-10 object-contain rounded-lg">
+        <div data-sm-desk-logo-fb class="w-10 h-10 flex items-center justify-center"><svg width="40" height="40" viewBox="0 0 44 44" fill="none"><path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="#1A56FF"/><path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/><g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/></g></svg></div>
+        <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+      </a>
+      <nav class="flex items-center gap-6 text-[14px] font-semibold flex-shrink-0 ml-2">
+        <a data-sm-nav="home" href="index.html" class="sm-desk-nav-link" data-i18n="home">Home</a>
+        <a data-sm-nav="courses" href="courses.html" class="sm-desk-nav-link" data-i18n="courses">Courses</a>
+        <a data-sm-nav="ebooks" href="ebooks.html" class="sm-desk-nav-link" data-i18n="ebooks">Ebooks</a>
+        <a data-sm-nav="free" href="courses.html?q=" class="sm-desk-nav-link" data-i18n="free">Free Resources</a>
+        <a data-sm-nav="telegram" href="#" data-sm-telegram class="sm-desk-nav-link" data-i18n="telegram">Telegram</a>
+      </nav>
+      <div class="flex-1"></div>
+      <div class="sm-desk-search w-[280px] xl:w-[320px] flex-shrink-0"><i class="fa-solid fa-magnifying-glass text-slate-400 text-[14px]"></i><input data-sm-desk-search data-i18n-ph="searchPh" type="text" placeholder="Search courses, subjects, ebooks..."><button data-sm-desk-search-btn class="text-slate-400 hover:text-[#1A56FF]" aria-label="Search"><i class="fa-solid fa-arrow-right text-[12px]"></i></button></div>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-lang-btn class="sm-desk-pill"><i class="fa-solid fa-globe text-[15px] text-slate-500"></i><span data-i18n="lang">বাংলা/English</span></button><div data-sm-desk-lang-menu class="sm-desk-menu hidden"><button type="button" class="sm-mi" data-sm-lang-pick="bn">বাংলা (Bangla)</button><button type="button" class="sm-mi" data-sm-lang-pick="en">English</button></div></div>
+      <button data-sm-theme-btn class="sm-desk-pill flex-shrink-0"><i data-sm-theme-icon class="fa-solid fa-sun text-[15px] text-[#F59E0B]"></i><span data-i18n="theme">Theme</span></button>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-account-btn class="sm-desk-pill"><i class="fa-regular fa-user text-[15px] text-slate-600"></i><span data-i18n="account">Account</span></button><div data-sm-desk-account-menu class="sm-desk-menu hidden"></div></div>
+    </div>
+  </div>
+  <div id="smDeskDrawer" class="hidden"><div class="sm-backdrop"></div><div class="sm-panel"><div class="flex items-center justify-between mb-3"><span class="text-[18px] font-extrabold"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span><button data-sm-drawer-close class="w-9 h-9 rounded-lg hover:bg-slate-100"><i class="fa-solid fa-xmark"></i></button></div><nav class="flex flex-col gap-1 text-[14px] font-semibold"><a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a><a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a><a href="ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a><a href="my-courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My Courses</a><a href="my-ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My E-Books</a><a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Account / Dashboard</a><a href="cart.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Cart (<span data-sm-cart-count>0</span>)</a></nav></div></div>
+  <div class="lg:hidden max-w-[1420px] mx-auto px-4 sm:px-6 h-[58px] flex items-center justify-between gap-3">
+    <div class="flex items-center gap-2 min-w-0">
+      <a href="my-courses.html" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 flex-shrink-0">
+        <i class="fa-solid fa-arrow-left text-[18px] text-[#0F2043]"></i>
+      </a>
+      <span id="mTitle" class="text-[15px] font-extrabold text-[#0F2043] truncate">Learning...</span>
+    </div>
+    <a href="dashboard.html" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 flex-shrink-0">
+      <i class="fa-solid fa-house text-[16px] text-[#0F2043]"></i>
+    </a>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-3 sm:px-6 py-4">
+  <!-- Course head -->
+  <section id="learnHead" class="rounded-[16px] overflow-hidden relative" style="background:#0F2043">
+    <div class="absolute inset-0" style="background-image:radial-gradient(rgba(255,255,255,0.09) 1px,transparent 1.5px);background-size:18px 18px"></div>
+    <div class="relative px-4 sm:px-6 py-4 sm:py-5 flex items-center gap-3">
+      <a href="my-courses.html" class="hidden sm:flex w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 items-center justify-center text-white flex-shrink-0"><i class="fa-solid fa-arrow-left text-[14px]"></i></a>
+      <div class="min-w-0">
+        <div id="learnPills" class="flex items-center gap-1.5 flex-wrap mb-1"></div>
+        <h1 id="learnTitle" class="bangla text-white font-extrabold text-[17px] sm:text-[22px] leading-snug">Loading...</h1>
+        <p id="learnSub" class="text-white/60 text-[11px] sm:text-[12px] font-medium mt-0.5"></p>
+      </div>
+    </div>
+  </section>
+
+  <div id="learnBody" class="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-4 mt-4">
+    <!-- Left: Course Content — user friendly, section-wise buttons, folder/chapter/lecture -->
+    <div class="order-2 lg:order-1 lg:sticky lg:top-[80px] h-fit">
+      <div class="bg-white rounded-[16px] border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] overflow-hidden">
+        <!-- beautiful header -->
+        <div class="bg-gradient-to-br from-[#1A56FF] via-[#4F46E5] to-[#7C3AED] px-4 py-3.5 relative overflow-hidden">
+          <div class="absolute -right-6 -top-6 w-20 h-20 bg-white/10 rounded-full"></div>
+          <div class="absolute -right-2 top-8 w-10 h-10 bg-white/10 rounded-full"></div>
+          <div class="relative flex items-center gap-3">
+            <span class="w-9 h-9 rounded-[11px] bg-white/20 backdrop-blur border border-white/20 flex items-center justify-center text-white flex-shrink-0"><i class="fa-solid fa-layer-group text-[15px]"></i></span>
+            <div class="min-w-0 flex-1">
+              <h2 class="text-white font-extrabold text-[14.5px] leading-tight flex items-center gap-1.5"><i class="fa-solid fa-list-check text-white/80 text-[12px]"></i> Course Content</h2>
+              <p id="currSub" class="text-white/75 text-[11px] font-medium truncate mt-0.5">Loading classes...</p>
+            </div>
+            <span class="hidden sm:flex w-7 h-7 rounded-full bg-white/20 backdrop-blur items-center justify-center text-white flex-shrink-0"><i class="fa-solid fa-graduation-cap text-[11px]"></i></span>
+          </div>
+          <div class="relative mt-2.5 flex items-center gap-2">
+            <span id="leftCoursePill" class="hidden px-2 py-1 rounded-full bg-white/15 border border-white/20 text-white text-[10px] font-bold truncate max-w-[150px]"></span>
+            <span class="ml-auto flex items-center gap-1.5 text-white/80 text-[10px] font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse"></span> Active</span>
+          </div>
+        </div>
+        <!-- quick section filter pills (user friendly) -->
+        <div id="sectionPills" class="px-3 py-2.5 bg-[#F8F9FD] border-b border-slate-100 flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
+          <button data-sec-filter="all" class="sec-pill active px-3 py-1.5 rounded-full text-[11px] font-extrabold whitespace-nowrap bg-[#1A56FF] text-white shadow-sm">All</button>
+          <button data-sec-filter="subjects" class="sec-pill px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap bg-white border border-slate-200 text-slate-600 hover:border-[#1A56FF] hover:text-[#1A56FF]">Sections</button>
+          <button data-sec-filter="chapters" class="sec-pill px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap bg-white border border-slate-200 text-slate-600 hover:border-[#1A56FF] hover:text-[#1A56FF]">Chapters</button>
+          <button data-sec-filter="lectures" class="sec-pill px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap bg-white border border-slate-200 text-slate-600 hover:border-[#1A56FF] hover:text-[#1A56FF]">Lectures</button>
+        </div>
+        <div id="currList" class="max-h-[58vh] lg:max-h-[60vh] overflow-y-auto p-2 bg-[#FCFCFE]">
+          <p class="text-[13px] text-slate-400 text-center py-8"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading classes...</p>
+        </div>
+        <div class="px-3 py-2.5 bg-[#F8F9FD] border-t border-slate-100 flex items-center justify-between">
+          <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1.5"><i class="fa-solid fa-book-open text-[#1A56FF] text-[11px]"></i> <span id="leftStats">0 lectures</span></span>
+          <span class="text-[10px] font-bold text-slate-400">Course Name • Folder • Chapter • Class</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: player + now playing + telegram -->
+    <div class="space-y-4 order-1 lg:order-2">
+      <div id="playerCard" class="hidden lg:block bg-white rounded-[14px] border border-slate-100 shadow-sm overflow-hidden scroll-mt-[76px]">
+        <div id="playerBox" class="relative aspect-video bg-black flex items-center justify-center">
+          <p class="text-[13px] text-slate-400 text-center px-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading player...</p>
+        </div>
+        <div class="p-4 sm:p-5">
+          <h2 id="nowTitle" class="font-extrabold text-[15px] sm:text-[17px] text-[#0F2043] leading-snug">Select a class to start</h2>
+          <p id="nowMeta" class="text-[11px] sm:text-[12px] text-slate-500 mt-1"></p>
+          <!-- Class resources (Lecture Sheet / Practice Sheet) — screenshot style -->
+          <div id="resCard" class="hidden mt-4 rounded-[14px] overflow-hidden border border-white/10" style="background:#0C0C11;box-shadow:0 0 0 1px rgba(250,204,21,.22),0 12px 32px rgba(0,0,0,.45)">
+            <div class="px-4 pt-3.5 flex items-center gap-2">
+              <i class="fa-regular fa-bookmark text-white/85 text-[14px]"></i>
+              <span class="text-white font-bold text-[13.5px]">Resources</span>
+            </div>
+            <div id="resBtns" class="p-3.5 space-y-2.5"></div>
+          </div>
+          <!-- Class Telegram groups (per-class links + auto invites) -->
+          <div id="lessonTgCard" class="hidden mt-3 rounded-[14px] overflow-hidden border border-[#CDEBFF]" style="background:linear-gradient(135deg,#EAF6FF 0%,#F4F9FF 60%,#EDF7FF 100%)">
+            <div class="px-4 pt-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-[#229ED9] text-white flex items-center justify-center flex-shrink-0"><i class="fa-brands fa-telegram text-[13px]"></i></span>
+              <div class="min-w-0">
+                <p class="text-[#0F2043] font-bold text-[13px]">Class Groups</p>
+                <p class="text-[10.5px] text-slate-500">Ei class-er Telegram groups</p>
+              </div>
+            </div>
+            <div id="lessonTgBtns" class="p-3.5 pt-2.5 space-y-2"></div>
+          </div>
+          <div class="flex items-center gap-2 mt-4">
+            <button id="prevBtn" class="flex-1 py-2.5 rounded-[10px] border border-slate-200 text-slate-600 font-bold text-[12.5px] flex items-center justify-center gap-1.5 hover:bg-slate-50 disabled:opacity-40" disabled>
+              <i class="fa-solid fa-backward-step text-[13px]"></i> Previous
+            </button>
+            <button id="nextBtn" class="flex-1 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[12.5px] flex items-center justify-center gap-1.5 disabled:opacity-40" disabled>
+              Next <i class="fa-solid fa-forward-step text-[13px]"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Telegram groups under player (right side) -->
+      <section id="tgSection" class="hidden">
+        <div class="rounded-[16px] overflow-hidden border border-[#CDEBFF] shadow-sm" style="background:linear-gradient(135deg,#EAF6FF 0%,#F4F9FF 60%,#EDF7FF 100%)">
+          <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr]">
+            <div id="tgImgWrap" class="relative min-h-[120px] sm:min-h-full bg-[#0F2043]">
+              <img id="tgCourseImg" src="" alt="Course" class="absolute inset-0 w-full h-full object-contain">
+            </div>
+            <div class="p-4 sm:p-4">
+              <div class="flex items-center gap-2.5">
+                <span class="w-10 h-10 rounded-full bg-[#229ED9] text-white flex items-center justify-center shadow flex-shrink-0"><i class="fa-brands fa-telegram text-[18px]"></i></span>
+                <div class="min-w-0">
+                  <h2 class="text-[14px] sm:text-[15px] font-extrabold text-[#0F2043]">Join Telegram Groups</h2>
+                  <p class="text-[11px] text-slate-500 font-medium">Updates, PDFs & discussions</p>
+                </div>
+              </div>
+              <div id="tgBigBtns" class="flex flex-col sm:flex-row sm:flex-wrap gap-2 mt-3"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  try{
+    var hasTok=function(){ try{return !!(localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token'));}catch(x){return false;} };
+    if(!hasTok()) document.querySelectorAll('[data-account-link]').forEach(function(a){ a.href='auth.html?next='+encodeURIComponent('dashboard.html'); });
+  }catch(e){}
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('[data-account-link]'):null;
+    if(!a) return;
+    var t=''; try{t=localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||'';}catch(x){}
+    if(!t){ e.preventDefault(); location.href='auth.html?next='+encodeURIComponent('dashboard.html'); }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  var esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); };
+  var $ = function(id){ return document.getElementById(id); };
+  var courseId = '';
+  try{ courseId = new URLSearchParams(window.location.search).get('course') || new URLSearchParams(window.location.search).get('id') || ''; }catch(e){}
+  var lessons = [];
+  var enrolled = false;
+  var playingId = null;
+  var tgGroups = [];
+  var courseThumb = '';
+  var courseTitle = '';
+
+  function token(){ try{ return localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||''; }catch(e){ return ''; } }
+  function headers(){ var t=token(); return t ? { 'Authorization':'Bearer '+t } : {}; }
+  function toast(msg){
+    var t = document.createElement('div');
+    t.className = 'fixed bottom-20 lg:bottom-6 left-1/2 -translate-x-1/2 bg-[#0F2043] text-white px-5 py-3 rounded-full text-[13px] font-semibold shadow-xl z-50';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(function(){ t.remove(); }, 2200);
+  }
+  function lastKey(){ return 'sm_last_lesson_' + courseId; }
+  function saveLast(id){ try{ localStorage.setItem(lastKey(), String(id)); }catch(e){} }
+  function readLast(){ try{ return localStorage.getItem(lastKey()) || ''; }catch(e){ return ''; } }
+
+  // Hierarchical: Subject -> Chapter -> Lecture
+  var navStack = []; // [{type:'subject', name}, {type:'chapter', name, subject}]
+  var curSubject = null, curChapter = null;
+  function getStructure(){
+    // build from lessons sorted by order
+    var map = {}, order=[];
+    lessons.forEach(function(l){
+      var subj = l.subject && String(l.subject).trim() ? String(l.subject).trim() : 'General';
+      var chap = l.chapter || l.section || 'All Classes';
+      if(!map[subj]){ map[subj]={ name:subj, chapters:{}, cOrder:[], lessons:[] }; order.push(subj); }
+      if(!map[subj].chapters[chap]){ map[subj].chapters[chap]={ name:chap, lessons:[] }; map[subj].cOrder.push(chap); }
+      map[subj].chapters[chap].lessons.push(l);
+      map[subj].lessons.push(l);
+    });
+    return order.map(function(s){
+      var o=map[s];
+      return { subject:o.name, chapters: o.cOrder.map(function(c){ return { chapter:c, lessons: o.chapters[c].lessons }; }), lessons:o.lessons, total:o.lessons.length, chaptersCount:o.cOrder.length };
+    });
+  }
+  function groupLessons(){
+    var groups = [], map = {};
+    lessons.forEach(function(l){
+      var s = l.section || 'All Classes';
+      if(!map[s]){ map[s] = { name: s, items: [] }; groups.push(map[s]); }
+      map[s].items.push(l);
+    });
+    return groups;
+  }
+  function renderCurriculum(){
+    var box = $('currList');
+    var free = lessons.filter(function(l){ return l.isFree; }).length;
+    var structure = getStructure();
+    var leftStatsEl=$('leftStats');
+    if(leftStatsEl){ var totCh = structure.reduce(function(a,s){return a+s.chapters.length;},0); leftStatsEl.textContent = lessons.length+' lectures • '+structure.length+' sections • '+totCh+' chapters'; }
+    // header breadcrumb & subtitle
+    if(!lessons.length){
+      $('currSub').textContent = 'No classes added yet';
+      box.innerHTML = '<p class="text-[13px] text-slate-400 text-center py-8">Classes coming soon.</p>';
+      return;
+    }
+    // decide view level
+    if(curSubject===null){
+      // SUBJECT LIST (level 1) — like screenshot 1 & 2
+      var totalChapters = structure.reduce(function(a,s){ return a + s.chapters.length; },0);
+      $('currSub').textContent = structure.length + ' sections • ' + totalChapters + ' chapters • ' + lessons.length + ' lectures' + (enrolled ? ' • Unlocked' : '');
+      if(structure.length===1 && structure[0].chapters.length===1){
+        // single subject single chapter -> directly show lectures (fallback to old flat)
+        curSubject = structure[0].subject; curChapter = structure[0].chapters[0].chapter;
+        renderCurriculum(); return;
+      }
+      box.innerHTML = '<div class="p-2 space-y-2">'+ structure.map(function(s){
+        var chCount = s.chapters.length, lecCount = s.total;
+        var freeInSubj = s.lessons.filter(function(x){return x.isFree;}).length;
+        return '<button data-open-subject="'+esc(s.subject)+'" class="w-full flex items-center gap-3 px-4 py-3.5 rounded-[14px] border border-slate-200 bg-white hover:border-[#1A56FF]/30 hover:shadow-md transition text-left group">'
+          + '<span class="w-10 h-10 rounded-[10px] bg-[#1A56FF]/10 group-hover:bg-[#1A56FF] text-[#1A56FF] group-hover:text-white flex items-center justify-center flex-shrink-0 transition"><i class="fa-solid fa-folder text-[16px]"></i></span>'
+          + '<span class="flex-1 min-w-0"><span class="block text-[13.5px] font-extrabold text-[#0F2043] truncate">'+esc(s.subject)+'</span><span class="block text-[11px] text-slate-500 font-medium">'+chCount+' chapters • '+lecCount+' lectures'+(freeInSubj?' • '+freeInSubj+' free':'')+'</span></span>'
+          + '<i class="fa-solid fa-chevron-right text-slate-400 text-[12px] flex-shrink-0"></i></button>';
+      }).join('') + '</div>';
+      updateNav(); return;
+    }
+    if(curChapter===null){
+      // CHAPTER LIST inside selected subject (level 2)
+      var subjObj = structure.find(function(x){ return x.subject===curSubject; });
+      if(!subjObj){ curSubject=null; renderCurriculum(); return; }
+      $('currSub').innerHTML = '<button data-back="subject" class="inline-flex items-center gap-1 text-[#1A56FF] font-bold text-[11px] hover:underline"><i class="fa-solid fa-arrow-left text-[10px]"></i> '+esc(curSubject)+'</button> • '+subjObj.chapters.length+' chapters • '+subjObj.total+' lectures';
+      box.innerHTML = '<div class="p-2 space-y-2">'
+        + '<div class="flex items-center gap-2 px-2 py-1 text-[11px] font-bold text-slate-500"><button data-back="subject" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center"><i class="fa-solid fa-arrow-left text-[10px]"></i></button> Back to sections</div>'
+        + subjObj.chapters.map(function(c){
+          var cnt=c.lessons.length; var freeC=c.lessons.filter(function(x){return x.isFree;}).length;
+          return '<button data-open-chapter="'+esc(c.chapter)+'" class="w-full flex items-center gap-3 px-4 py-3.5 rounded-[14px] border border-slate-200 bg-[#FFFBEB]/40 hover:border-[#F59E0B]/40 hover:shadow-md transition text-left group">'
+            + '<span class="w-10 h-10 rounded-[10px] bg-[#F59E0B]/15 group-hover:bg-[#F59E0B] text-[#D97706] group-hover:text-white flex items-center justify-center flex-shrink-0 transition"><i class="fa-solid fa-book-open text-[14px]"></i></span>'
+            + '<span class="flex-1 min-w-0"><span class="block text-[13px] font-bold text-[#0F2043] truncate">'+esc(c.chapter)+'</span><span class="block text-[11px] text-slate-500">'+cnt+' lectures'+(freeC?' • '+freeC+' free':'')+'</span></span>'
+            + '<i class="fa-solid fa-chevron-right text-slate-400 text-[12px]"></i></button>';
+        }).join('') + '</div>';
+      updateNav(); return;
+    }
+    // LECTURE LIST inside selected chapter (level 3) - like screenshot 3
+    var subj2 = structure.find(function(x){ return x.subject===curSubject; });
+    var chapObj = subj2 ? subj2.chapters.find(function(c){ return c.chapter===curChapter; }) : null;
+    if(!chapObj){ curChapter=null; renderCurriculum(); return; }
+    $('currSub').innerHTML = '<button data-back="chapter" class="inline-flex items-center gap-1 text-[#1A56FF] font-bold text-[11px] hover:underline"><i class="fa-solid fa-arrow-left text-[10px]"></i> '+esc(curChapter)+'</button> • '+chapObj.lessons.length+' lectures';
+    var n=0;
+    box.innerHTML = '<div class="p-2 space-y-2">'
+      + '<div class="flex items-center gap-2 px-2 py-1 text-[11px] font-bold text-slate-500"><button data-back="chapter" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center"><i class="fa-solid fa-arrow-left text-[10px]"></i></button> Back to chapters • '+esc(curSubject)+' / '+esc(curChapter)+'</div>'
+      + chapObj.lessons.map(function(l){
+        n++;
+        var open = l.isFree || enrolled;
+        var active = String(l.id)===String(playingId);
+        var hasSheet = (Number(l.resourceCount)||0) > 0 || (Array.isArray(l.resources) && l.resources.length);
+        return '<button data-lesson="'+l.id+'" class="lesson-row w-full flex items-center gap-3 px-3 py-3 rounded-[12px] border '+(active?'border-[#1A56FF] bg-[#EEF2FF]':'border-slate-200 bg-white hover:border-[#1A56FF]/20')+' text-left transition">'
+          + '<span class="w-9 h-9 rounded-[10px] flex items-center justify-center flex-shrink-0 '+(active?'bg-[#1A56FF] text-white':(open?'bg-[#EEF2FF] text-[#1A56FF]':'bg-slate-100 text-slate-400'))+'"><i class="fa-solid '+(open?(active?'fa-pause':'fa-play'):'fa-lock')+' text-[12px] '+(open&&!active?'ml-0.5':'')+'"></i></span>'
+          + '<span class="flex-1 min-w-0"><span class="block text-[13px] font-bold '+(active?'text-[#1A56FF]':'text-[#0F2043]')+' truncate">'+esc(l.title)+'</span><span class="block text-[11px] text-slate-500">'+esc(l.duration||'Class')+(l.isFree?' • <span class="text-[#16A34A] font-bold">FREE</span>':'')+(hasSheet?' • <span class="text-[#D97706] font-bold"><i class="fa-solid fa-file-lines"></i> Sheet</span>':'')+'</span></span>'
+          + '<i class="fa-solid fa-chevron-right text-slate-300 text-[11px] flex-shrink-0"></i></button>';
+      }).join('') + '</div>';
+    updateNav();
+  }
+
+  function updateNav(){
+    var openList = lessons.filter(function(l){ return l.isFree || enrolled; });
+    var idx = openList.findIndex(function(l){ return String(l.id) === String(playingId); });
+    var pv = $('prevBtn'), nx = $('nextBtn');
+    if(pv) pv.disabled = !(idx > 0);
+    if(nx) nx.disabled = !(idx >= 0 && idx < openList.length - 1);
+  }
+
+  // Class resources: screenshot-style buttons (Lecture = dark, Practice = yellow)
+  function renderResources(list){
+    var card = $('resCard'), box = $('resBtns');
+    if(!card || !box) return;
+    var arr = Array.isArray(list) ? list.filter(function(r){ return r && (r.label || r.url); }) : [];
+    if(!arr.length){ card.classList.add('hidden'); box.innerHTML=''; return; }
+    card.classList.remove('hidden');
+    box.innerHTML = arr.map(function(r){
+      var label = r.label || 'Sheet';
+      var kind = String(r.kind || '').toLowerCase();
+      var isPractice = kind === 'practice' || /practice/i.test(label);
+      var url = String(r.url || '#');
+      var btnCls = isPractice
+        ? 'background:#FACC15;color:#0F2043;'
+        : 'background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.16);';
+      var icon = isPractice ? 'fa-file-lines' : 'fa-file-lines';
+      return '<a href="'+esc(url)+'" target="_blank" rel="noopener" class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-[12px] font-extrabold text-[13px] transition hover:opacity-90" style="'+btnCls+'">'
+        + '<i class="fa-solid '+icon+' text-[13px]"></i> '+esc(label)+'</a>';
+    }).join('');
+  }
+
+  function hideResources(){ renderResources([]); }
+
+  // Class Telegram groups (per-class static links + auto single-use invites)
+  function renderLessonTg(list){
+    var card = $('lessonTgCard'), box = $('lessonTgBtns');
+    if(!card || !box) return;
+    var arr = Array.isArray(list) ? list.filter(function(g){ return g && g.url; }) : [];
+    if(!arr.length){ card.classList.add('hidden'); box.innerHTML=''; return; }
+    card.classList.remove('hidden');
+    box.innerHTML = arr.map(function(g){
+      var invite = String(g.type||'').toLowerCase() === 'invite';
+      var btnCls = invite ? 'background:#16A34A;' : 'background:#229ED9;';
+      return '<a href="'+esc(g.url||'#')+'" target="_blank" rel="noopener" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-[12px] text-white font-extrabold text-[12.5px] transition hover:opacity-90 shadow-sm" style="'+btnCls+'">'
+        + '<i class="fa-brands fa-telegram text-[15px]"></i> '+esc(g.label||'Join Group')+'</a>';
+    }).join('');
+  }
+  function hideLessonTg(){ renderLessonTg([]); }
+
+  function stopPlayer(){
+    var box = $('playerBox');
+    box.innerHTML = '';
+  }
+
+  function playLesson(id){
+    var l = lessons.find(function(x){ return String(x.id) === String(id); });
+    if(!l) return;
+    if(!l.isFree && !enrolled){
+      toast('Ei class locked — enroll korle dekhte parbe');
+      return;
+    }
+    playingId = l.id;
+    saveLast(l.id);
+    // Phone view: class play korle player card upore show + scroll (age theke hidden chilo)
+    try{ var pc=$('playerCard'); if(pc){ pc.classList.remove('hidden'); if(window.innerWidth < 1024){ pc.scrollIntoView({behavior:'smooth', block:'start'}); } } }catch(e){}
+    $('nowTitle').textContent = l.title || '';
+    $('nowMeta').textContent = ((l.subject ? l.subject + ' • ' : '') + (l.chapter || l.section ? (l.chapter||l.section) + ' • ' : '') + (l.duration || ''));
+    hideResources();
+    hideLessonTg();
+    // keep hierarchical nav in sync
+    if(l.subject) curSubject = l.subject;
+    else if(l.subjectId) { try{ var subjList = getStructure(); var found = subjList.find(function(s){return String(s.subject)===String(l.subject);}); if(found) curSubject=found.subject; }catch(e){} }
+    if(l.chapter||l.section) curChapter = l.chapter || l.section;
+    renderCurriculum();
+    var secEl = null;
+    try{
+      var btn = document.querySelector('[data-lesson="'+l.id+'"]');
+      if(btn){ var wrap = btn.closest('.sec-wrap'); if(wrap && !wrap.classList.contains('sec-open')) wrap.classList.add('sec-open'); }
+    }catch(e){}
+    var box = $('playerBox');
+    box.innerHTML = '<p class="text-[13px] text-slate-400 text-center px-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading video...</p>';
+    fetch('/api/my/lessons/' + encodeURIComponent(l.id) + '/watch', { headers: token() ? headers() : {} })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(!j.success) throw new Error(j.message);
+        var d = j.data;
+        stopPlayer();
+        renderResources(d && d.resources ? d.resources : []);
+        renderLessonTg(d && d.telegramGroups ? d.telegramGroups : []);
+        if(d && (d.source === 'upload' || (!d.embedUrl && d.videoUrl))){
+          box.innerHTML = '<video id="learnVideo" class="absolute inset-0 w-full h-full" controls playsinline preload="metadata" controlsList="nodownload" src="'+esc(d.videoUrl)+'"></video>';
+          var v = $('learnVideo');
+          if(v){ try{ v.play().catch(function(){}); }catch(e){} }
+        } else {
+          var url = (d && d.embedUrl) || '';
+          box.innerHTML = '<iframe class="absolute inset-0 w-full h-full" src="'+esc(url)+(url.indexOf('?')>-1?'&':'?')+'autoplay=1" title="Class video" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        }
+      })
+      .catch(function(e){ box.innerHTML = '<p class="text-[13px] text-red-400 text-center px-6">'+esc(e.message || 'Video load hoyni')+'</p>'; hideResources(); hideLessonTg(); });
+  }
+
+  function goStep(dir){
+    var openList = lessons.filter(function(l){ return l.isFree || enrolled; });
+    var idx = openList.findIndex(function(l){ return String(l.id) === String(playingId); });
+    var nxt = openList[idx + dir];
+    if(nxt) playLesson(nxt.id);
+  }
+
+  async function boot(){
+    if(!courseId){
+      $('learnTitle').textContent = 'No course selected';
+      $('playerBox').innerHTML = '<p class="text-[13px] text-slate-400 text-center px-6">Course select koro</p>';
+      return;
+    }
+    // 1) course info (public)
+    try{
+      var r = await fetch('/api/public/courses/' + encodeURIComponent(courseId));
+      var j = await r.json();
+      if(!j.success) throw new Error(j.message || 'Course not found');
+      var c = j.data;
+      document.title = c.title + ' - Learn - StudyMart';
+      $('learnTitle').textContent = c.title;
+      $('mTitle').textContent = c.title;
+      courseThumb = c.thumbnail || '';
+      courseTitle = c.title || 'Course';
+      var hb = document.getElementById('learnHead');
+      if(hb && c.bannerColor) hb.style.background = c.bannerColor;
+      $('learnPills').innerHTML = (c.batchName ? '<span class="px-2 py-0.5 rounded-full bg-white/15 border border-white/20 text-white text-[10px] font-bold">'+esc(c.batchName)+'</span>' : '')
+        + (c.categoryName ? '<span class="px-2 py-0.5 rounded-full bg-white/15 border border-white/20 text-white text-[10px] font-bold">'+esc(c.categoryName)+'</span>' : '')
+        + '<span class="px-2 py-0.5 rounded-full bg-[#16A34A] text-white text-[10px] font-bold"><i class="fa-solid fa-check mr-0.5 text-[8px]"></i>Enrolled</span>';
+      $('learnSub').textContent = (c.teacher ? 'By ' + c.teacher : '');
+      var leftPill=$('leftCoursePill');
+      if(leftPill){ leftPill.textContent = (c.batchName? c.batchName+' • ':'') + c.title; leftPill.classList.remove('hidden'); }
+    }catch(e){
+      $('learnTitle').textContent = e.message;
+      return;
+    }
+    // 2) curriculum (public titles)
+    try{
+      var rc = await fetch('/api/public/courses/' + encodeURIComponent(courseId) + '/curriculum');
+      var jc = await rc.json();
+      if(jc.success) lessons = jc.data.lessons || [];
+    }catch(e){ lessons = []; }
+    // 3) access (enrolled + telegram)
+    if(token()){
+      try{
+        var ra = await fetch('/api/my/courses/' + encodeURIComponent(courseId) + '/access', { headers: headers() });
+        var ja = await ra.json();
+        if(ja.success && ja.data){
+          enrolled = !!ja.data.enrolled;
+          tgGroups = Array.isArray(ja.data.telegramGroups) && ja.data.telegramGroups.length
+            ? ja.data.telegramGroups
+            : (ja.data.telegramLink ? [{ label: 'Join Group', url: ja.data.telegramLink, type: 'static' }] : []);
+        }
+      }catch(e){}
+    }
+    if(!enrolled){
+      $('playerBox').innerHTML = '<div class="text-center px-6 py-10">'
+        + '<div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mx-auto"><i class="fa-solid fa-lock text-white/70 text-[20px]"></i></div>'
+        + '<p class="text-white font-bold text-[14px] mt-4">Tumi ei course e enroll koro nai</p>'
+        + '<a href="course.html?id='+encodeURIComponent(courseId)+'" class="inline-flex items-center gap-1.5 mt-4 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] text-white font-bold text-[12.5px]">Enroll Now <i class="fa-solid fa-arrow-right text-[11px]"></i></a></div>';
+    }
+    // telegram: boro card + pase course image (link thakle tobei show)
+    if(tgGroups.length){
+      var sec = $('tgSection');
+      if(sec) sec.classList.remove('hidden');
+      var img = $('tgCourseImg'), wrap = $('tgImgWrap');
+      if(img){
+        if(courseThumb){ img.src = courseThumb; img.alt = courseTitle; }
+        else if(wrap){ wrap.innerHTML = '<div class="absolute inset-0 flex items-center justify-center" style="background:linear-gradient(135deg,#1A56FF 0%,#0F2043 100%)"><i class="fa-solid fa-book-open text-white/30 text-[40px]"></i></div>'; }
+      }
+      var big = $('tgBigBtns');
+      if(big) big.innerHTML = tgGroups.map(function(g){
+        var invite = g.type === 'invite';
+        return '<a href="'+esc(g.url||'#')+'" target="_blank" class="flex-1 min-w-[180px] inline-flex items-center justify-center gap-2 px-5 py-3 rounded-[12px] text-white text-[13.5px] font-extrabold shadow hover:opacity-90 transition '+(invite?'bg-[#16A34A]':'bg-[#229ED9]')+'">'
+          + '<i class="fa-brands fa-telegram text-[18px]"></i> '+esc(g.label||'Join Group')+'</a>';
+      }).join('');
+    }
+    renderCurriculum();
+    // FIX: No auto-play — jotokkon na click korbe totokkon play hobe na (Boss requirement)
+    if(!lessons.length){
+      $('nowTitle').textContent = 'No lectures yet';
+      $('nowMeta').textContent = 'Admin will add lectures soon';
+    } else {
+      $('nowTitle').textContent = 'Select a lecture to start';
+      var totCh = getStructure().reduce(function(a,s){return a+s.chapters.length;},0);
+      $('nowMeta').textContent = lessons.length+' lectures • '+getStructure().length+' sections • '+totCh+' chapters • Choose from left panel';
+      var ph=$('playerBox');
+      if(ph){
+        if(courseThumb){
+          ph.innerHTML = '<div class="absolute inset-0"><img src="'+esc(courseThumb)+'" alt="'+esc(courseTitle)+'" class="w-full h-full object-cover opacity-90"><div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent"></div><div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6"><div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur border border-white/30 flex items-center justify-center mb-3 shadow-lg"><i class="fa-solid fa-play text-[20px] ml-1"></i></div><p class="font-extrabold text-[15px] drop-shadow">Ready to learn?</p><p class="text-white/80 text-[12px] mt-1">Select a lecture from Course Content on the left</p></div></div>';
+        } else {
+          ph.innerHTML = '<div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-[#0F2043] via-[#1E3A8A] to-[#0F2043]"><div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur border border-white/15 flex items-center justify-center mb-4"><i class="fa-solid fa-circle-play text-white text-[24px]"></i></div><p class="text-white font-extrabold text-[15px]">Select a lecture to start</p><p class="text-white/60 text-[12px] mt-1.5">Choose Section → Chapter → Lecture from left panel</p></div>';
+        }
+      }
+    }
+    // Phone view: enroll na korle enroll prompt dekhabo (playerCard HTML-e hidden lg:block);
+    // enrolled hole class play korar age hidden thakbe — playLesson() show korbe
+    try{ if(!enrolled){ var pcm=$('playerCard'); if(pcm) pcm.classList.remove('hidden'); } }catch(e){}
+    updateNav();
+  }
+
+  // section pills (user friendly, section onusare)
+  document.addEventListener('click', function(e){
+    var pill = e.target.closest ? e.target.closest('[data-sec-filter]') : null;
+    if(pill){
+      var f = pill.getAttribute('data-sec-filter');
+      document.querySelectorAll('[data-sec-filter]').forEach(function(b){ b.classList.toggle('active', b===pill); b.classList.toggle('bg-[#1A56FF]', b===pill); b.classList.toggle('text-white', b===pill); b.classList.toggle('bg-white', b!==pill); });
+      // update pill styles
+      document.querySelectorAll('.sec-pill').forEach(function(b){
+        if(b.classList.contains('active')){ b.className='sec-pill active px-3 py-1.5 rounded-full text-[11px] font-extrabold whitespace-nowrap bg-[#1A56FF] text-white shadow-sm'; } else { b.className='sec-pill px-3 py-1.5 rounded-full text-[11px] font-bold whitespace-nowrap bg-white border border-slate-200 text-slate-600 hover:border-[#1A56FF] hover:text-[#1A56FF]'; }
+      });
+      if(f==='all'){ curSubject=null; curChapter=null; }
+      else if(f==='subjects'){ curSubject=null; curChapter=null; }
+      else if(f==='chapters'){ if(curSubject){ curChapter=null; } else { curSubject=null; } // show subjects then user picks
+      }
+      else if(f==='lectures'){ // show all lectures flat inside current subject/chapter or all
+        if(curSubject && curChapter){ /* stay */ } else if(curSubject){ curChapter=null; /* will show chapters, but force lectures view */ var struct=getStructure(); var subj=struct.find(function(s){return s.subject===curSubject;}); if(subj && subj.chapters.length===1){ curChapter=subj.chapters[0].chapter; } }
+      }
+      renderCurriculum(); 
+      // if lectures filter, and we are at subject list, open first chapter lectures directly
+      if(f==='lectures' && curSubject===null){
+        var st=getStructure();
+        if(st.length===1 && st[0].chapters.length>=1){ curSubject=st[0].subject; curChapter=st[0].chapters[0].chapter; renderCurriculum(); }
+      }
+      return;
+    }
+    var lb = e.target.closest ? e.target.closest('[data-lesson]') : null;
+    if(lb){ e.preventDefault(); playLesson(lb.dataset.lesson); return; }
+    var subjBtn = e.target.closest ? e.target.closest('[data-open-subject]') : null;
+    if(subjBtn){ e.preventDefault(); curSubject = subjBtn.getAttribute('data-open-subject'); curChapter=null; renderCurriculum(); return; }
+    var chapBtn = e.target.closest ? e.target.closest('[data-open-chapter]') : null;
+    if(chapBtn){ e.preventDefault(); curChapter = chapBtn.getAttribute('data-open-chapter'); renderCurriculum(); return; }
+    var backBtn = e.target.closest ? e.target.closest('[data-back]') : null;
+    if(backBtn){
+      var to = backBtn.getAttribute('data-back');
+      if(to==='chapter'){ curChapter=null; } else { curSubject=null; curChapter=null; }
+      renderCurriculum(); return;
+    }
+    var sb = e.target.closest ? e.target.closest('[data-sec]') : null;
+    if(sb){
+      var wrap = sb.closest('.sec-wrap');
+      if(wrap) wrap.classList.toggle('sec-open');
+      return;
+    }
+  });
+  $('prevBtn').addEventListener('click', function(){ goStep(-1); });
+  $('nextBtn').addEventListener('click', function(){ goStep(1); });
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<script src="assets/navbar.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
